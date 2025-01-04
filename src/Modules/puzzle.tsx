@@ -56,18 +56,22 @@ const Puzzle = () => {
   };
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4 text-center">Rompecabezas</h1>
-      <div className="grid grid-cols-4 gap-1 w-[400px] h-[400px] mx-auto">
+    <div className="p-4 w-full justify-center">
+      <h1 className="text-sm sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-center">
+        Rompecabezas
+      </h1>
+
+      <div className="grid grid-cols-4 gap-1 mx-auto w-full max-w-[400px] max-h-[400px]" style={{ aspectRatio: "1 / 1" }}>
         {tiles
           .sort((a, b) => a.position - b.position)
           .map((tile) => (
             <div
               key={tile.id}
-              className={`w-[100px] h-[100px] border cursor-pointer ${
-                tile.id === 16 ? "bg-gray-300" : "bg-cover"
-              }`}
+              className={`relative border cursor-pointer ${tile.id === 16 ? "bg-gray-300" : "bg-cover"
+                }`}
               style={{
+                width: "100%",
+                height: "100%",
                 backgroundImage: tile.id !== 16 ? "url('/images/puzzle.jpeg')" : undefined,
                 backgroundSize: "400% 400%",
                 backgroundPosition: tile.backgroundPosition,
@@ -76,6 +80,7 @@ const Puzzle = () => {
             ></div>
           ))}
       </div>
+
       {isSolved && <p className="text-black text-center font-semibold mt-4">¡Felicidades, resolviste el rompecabezas!</p>}
     </div>
   );

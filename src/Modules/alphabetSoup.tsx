@@ -139,33 +139,32 @@ const WordSearch: React.FC = () => {
     );
   };
 
-  const isFound = (word: string) => foundWords.some((foundWord) => foundWord.word === word);
+  const isFound = (word: string) =>
+    foundWords.some((foundWord) => foundWord.word === word);
 
   return (
     <div className="p-4 select-none">
+      <h1 className="text-2xl font-bold mb-4 text-center">Sopa de Letras</h1>
 
-      <h1 className="text-2xl font-bold mb-4">Sopa de Letras</h1>
-
-      <div className='flex flex-col md:flex-row gap-4'>
-        <div className="flex flex-col gap-2">
-          {filledGrid.map((row, rowIndex) => (
-            <div key={rowIndex} className="flex gap-2">
-              {row.map((letter, colIndex) => (
-                <div
-                  key={colIndex}
-                  className={`w-10 h-10 flex items-center justify-center border text-lg font-semibold cursor-pointer ${isHighlighted(rowIndex, colIndex) || isFoundCell(rowIndex, colIndex)
+      <div className="flex flex-col md:flex-row gap-4 items-center">
+        <div className="grid gap-1" style={{ gridTemplateColumns: "repeat(15, 1fr)", width: "100%", maxWidth: "100vw" }}>
+          {filledGrid.map((row, rowIndex) =>
+            row.map((letter, colIndex) => (
+              <div
+                key={`${rowIndex}-${colIndex}`}
+                className={`aspect-square flex items-center justify-center border text-xs sm:text-sm md:text-lg font-semibold cursor-pointer ${
+                  isHighlighted(rowIndex, colIndex) || isFoundCell(rowIndex, colIndex)
                     ? "bg-yellow-300"
                     : ""
-                    }`}
-                  onMouseDown={() => handleMouseDown(rowIndex, colIndex)}
-                  onMouseOver={() => handleMouseOver(rowIndex, colIndex)}
-                  onMouseUp={handleMouseUp}
-                >
-                  {letter}
-                </div>
-              ))}
-            </div>
-          ))}
+                }`}
+                onMouseDown={() => handleMouseDown(rowIndex, colIndex)}
+                onMouseOver={() => handleMouseOver(rowIndex, colIndex)}
+                onMouseUp={handleMouseUp}
+              >
+                {letter}
+              </div>
+            ))
+          )}
         </div>
 
         <div className="mt-4">
@@ -182,7 +181,6 @@ const WordSearch: React.FC = () => {
           </ul>
         </div>
       </div>
-
     </div>
   );
 };
