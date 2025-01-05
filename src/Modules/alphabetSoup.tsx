@@ -1,5 +1,5 @@
 // Archivo TypeScript para una sopa de letras interactiva en React con TailwindCSS
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 type Cell = {
   row: number;
@@ -12,21 +12,21 @@ type FoundWord = {
 };
 
 const wordsToFind = [
-  "cazo",
-  "fogón",
-  "pala",
-  "colador",
-  "cuchillo",
-  "tenedor",
-  "tina",
-  "tabla",
-  "servilletas",
-  "pinzas",
-  "tortillero",
-  "salsas",
+  'cazo',
+  'fogón',
+  'pala',
+  'colador',
+  'cuchillo',
+  'tenedor',
+  'tina',
+  'tabla',
+  'servilletas',
+  'pinzas',
+  'tortillero',
+  'salsas',
 ];
 
-const grid = Array.from({ length: 19 }, () => Array.from({ length: 15 }, () => ""));
+const grid = Array.from({ length: 19 }, () => Array.from({ length: 15 }, () => ''));
 
 // Función para insertar palabras en la cuadrícula
 const placeWordsInGrid = (grid: string[][], words: string[]): string[][] => {
@@ -74,7 +74,7 @@ const placeWordsInGrid = (grid: string[][], words: string[]): string[][] => {
         newRow >= 19 ||
         newCol < 0 ||
         newCol >= 15 ||
-        (grid[newRow][newCol] !== "" && grid[newRow][newCol] !== word[i])
+        (grid[newRow][newCol] !== '' && grid[newRow][newCol] !== word[i])
       ) {
         return false;
       }
@@ -92,9 +92,9 @@ const placeWordsInGrid = (grid: string[][], words: string[]): string[][] => {
 };
 
 const fillEmptySpaces = (grid: string[][]): string[][] => {
-  const alphabet = "abcdefghijklmnopqrstuvwxyz";
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz';
   return grid.map((row) =>
-    row.map((cell) => (cell === "" ? alphabet[Math.floor(Math.random() * alphabet.length)] : cell))
+    row.map((cell) => (cell === '' ? alphabet[Math.floor(Math.random() * alphabet.length)] : cell))
   );
 };
 
@@ -117,7 +117,7 @@ const WordSearch: React.FC = () => {
   const handleMouseUp = () => {
     const selectedWord = selectedCells
       .map((cell) => filledGrid[cell.row][cell.col])
-      .join("");
+      .join('');
 
     if (wordsToFind.includes(selectedWord)) {
       setFoundWords((prev) => [
@@ -143,19 +143,19 @@ const WordSearch: React.FC = () => {
     foundWords.some((foundWord) => foundWord.word === word);
 
   return (
-    <div className="p-4 select-none">
-      <h1 className="text-2xl font-bold mb-4 text-center">Sopa de Letras</h1>
+    <div className='p-4 select-none'>
+      <h2 className='text-2xl font-bold mb-4 text-center text-twoColor'>Sopa de Letras</h2>
 
-      <div className="flex flex-col md:flex-row gap-4 items-center">
-        <div className="grid gap-1" style={{ gridTemplateColumns: "repeat(15, 1fr)", width: "100%", maxWidth: "100vw" }}>
+      <div className='flex flex-col md:flex-row gap-4 items-center'>
+        <div className='grid gap-1' style={{ gridTemplateColumns: 'repeat(15, 1fr)', width: '100%', maxWidth: '100vw' }}>
           {filledGrid.map((row, rowIndex) =>
             row.map((letter, colIndex) => (
               <div
                 key={`${rowIndex}-${colIndex}`}
                 className={`aspect-square flex items-center justify-center border text-xs sm:text-sm md:text-lg font-semibold cursor-pointer ${
                   isHighlighted(rowIndex, colIndex) || isFoundCell(rowIndex, colIndex)
-                    ? "bg-yellow-300"
-                    : ""
+                    ? 'bg-yellow-300'
+                    : ''
                 }`}
                 onMouseDown={() => handleMouseDown(rowIndex, colIndex)}
                 onMouseOver={() => handleMouseOver(rowIndex, colIndex)}
@@ -167,13 +167,13 @@ const WordSearch: React.FC = () => {
           )}
         </div>
 
-        <div className="mt-4">
-          <h2 className="text-lg font-semibold mb-2">Palabras a Encontrar:</h2>
+        <div className='mt-4'>
+          <h3 className='text-lg font-semibold mb-2 text-oneColor'>Palabras a Encontrar:</h3>
           <ul>
             {wordsToFind.map((word) => (
               <li
                 key={word}
-                className={`text-lg ${isFound(word) ? "line-through text-gray-500" : ""}`}
+                className={`text-lg ${isFound(word) ? 'line-through text-gray-500' : ''}`}
               >
                 {word}
               </li>

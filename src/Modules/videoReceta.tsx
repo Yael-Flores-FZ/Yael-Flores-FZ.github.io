@@ -1,8 +1,8 @@
 import React from 'react';
 
-const videoURL = '/videos/videoIntro.mp4';
+const videoURL = '/videos/receta.mp4';
 
-const VideoIntro = () => {
+const VideoReceta = () => {
     return(
         <div className='h-[500px]'>
             <video
@@ -17,4 +17,4 @@ const VideoIntro = () => {
     );
 };
 
-export default VideoIntro
+export default VideoReceta

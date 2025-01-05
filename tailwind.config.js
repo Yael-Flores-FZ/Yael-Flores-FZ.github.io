@@ -5,11 +5,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        oneColor: '#628395', 
-        twoColor: '#96897B', 
-        threeColor: '#DBAD6A',
-        fourColor: '#CF995F',
-        fiveColor: '#D0CE7C',
+        oneColor: '#E4B80F', 
+        twoColor: '#77B255', 
+        threeColor: '#D1342B',
+        fourColor: '#F4F4F4',
+        fiveColor: '#8B5A2B',
       },
     },
   },

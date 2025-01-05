@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 type Tile = {
   id: number;
@@ -56,24 +56,24 @@ const Puzzle = () => {
   };
 
   return (
-    <div className="p-4 w-full justify-center">
-      <h1 className="text-sm sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-center">
+    <div className='p-4 w-full justify-center col-span-2'>
+      <h2 className='text-oneColor text-sm sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-center'>
         Rompecabezas
-      </h1>
+      </h2>
 
-      <div className="grid grid-cols-4 gap-1 mx-auto w-full max-w-[400px] max-h-[400px]" style={{ aspectRatio: "1 / 1" }}>
+      <div className='grid grid-cols-4 gap-1 mx-auto w-full max-w-[400px] max-h-[400px]' style={{ aspectRatio: '1 / 1' }}>
         {tiles
           .sort((a, b) => a.position - b.position)
           .map((tile) => (
             <div
               key={tile.id}
-              className={`relative border cursor-pointer ${tile.id === 16 ? "bg-gray-300" : "bg-cover"
+              className={`relative border cursor-pointer ${tile.id === 16 ? 'bg-gray-300' : 'bg-cover'
                 }`}
               style={{
-                width: "100%",
-                height: "100%",
+                width: '100%',
+                height: '100%',
                 backgroundImage: tile.id !== 16 ? "url('/images/puzzle.jpeg')" : undefined,
-                backgroundSize: "400% 400%",
+                backgroundSize: '400% 400%',
                 backgroundPosition: tile.backgroundPosition,
               }}
               onClick={() => moveTile(tile.position)}
@@ -81,7 +81,7 @@ const Puzzle = () => {
           ))}
       </div>
 
-      {isSolved && <p className="text-black text-center font-semibold mt-4">¡Felicidades, resolviste el rompecabezas!</p>}
+      {isSolved && <p className='text-black text-center font-semibold mt-4'>¡Felicidades, resolviste el rompecabezas!</p>}
     </div>
   );
 };
